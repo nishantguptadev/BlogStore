@@ -1,0 +1,35 @@
+{% extends 'blog/main.html' %}
+
+  {% block title %}Post{% endblock title %}
+  
+{% block body %}
+<div class="box-element p-4">
+  <a class="btn btn-outline-dark text-dark" href="/blog/">&#x2190; Back to Blog</a>
+  <div>
+  <hr>
+
+<div class="container py-4 my-4">
+    <form action="/blog/upload/" method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+          <label for="Title" class="form-label">Title :</label>
+          <input type="text" class="form-control"name="title" id="title">
+        </div>
+        
+        <div class="mb-3" >
+          <label  for="Enter your blog" class="form-label">Blog :</label>
+          <textarea type="text" rows="10" class="form-control"name='body' id="body"></textarea>
+        </div>
+        <div class="mb-3 form-check">
+          <input  type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label  class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        
+      </form>
+</div>
+{% endblock body %}
+
+
+

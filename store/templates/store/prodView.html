@@ -1,0 +1,40 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+
+  <title>
+    {{product.name}}
+
+  </title>
+  
+    {% block body %}
+    <div class="box-element">
+			<a class="btn btn-outline-dark" href="/">&#x2190; Back to Store</a>
+      <div>
+			<hr>
+    <!-- .product details -->
+
+  <div class="container  p-4 ">
+        <div class="row align-items-start">
+          <div class="col-md-4">
+            <img src="{{product.imageURL}}"width=""height="" class="card-img-top" alt="not found" />
+          </div>
+          
+          
+          
+          <div class="col-md-8">
+            <h1 class="text-danger">{{product.name}}</h1>
+            <h3 class="text-dark">RS.{{product.price}}</h3>
+            <h4 class="text-dark">Details:</h4>
+            <p>{{product.desc}}</p>
+          </div>
+          
+        </div>
+      </div>
+
+    {% endblock body %}
+    
+    
+    
+  
+

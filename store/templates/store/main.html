@@ -1,0 +1,84 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> {% block title %}{% endblock title %} </title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+        <a class="navbar-brand" href="/">Ecom</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Store <span class="sr-only">(current)</span></a>
+            </li>
+            
+
+            {% comment %} <li class="nav-item">
+              <button type="button" class="nav-link scrollto bg-danger p-2 me-4  text-white" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true">Cart (<span id="cart">0</span>)
+              </button>
+            </li> {% endcomment %}
+            
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            
+
+                <img id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" src="{% static 'images/cart.png' %}" alt="">
+            
+            <p id="cart">0</p>
+            </div>
+          </form>
+          <form class="d-flex ml-2" role="search" method="GET" action="/search/">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+            <button class="btn btn-outline-light" type="submit">Search</button>
+          </form>
+          {% if user.is_authenticated %}
+          <div class="nav-item bg-warning ml-2 text-center">
+          <a href="/eauth/logout/" class="btn btn-warning ml-2"> Logout </a>
+        </div>
+          {% else %}
+          
+          <div class="nav-item bg-warning ml-2 text-center">
+          <a href="/eauth/signin/" class="nav-item text-center btn btn-warning ml-2">Login</a>
+        </div>
+          {% endif %}
+          <div class="nav-item bg-danger ml-2 text-center">
+            <a class="nav-link" href="/blog">Blog <span class="sr-only">(current)</span></a>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+{% block body %}
+
+{% endblock body %}
+
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    
+    
+    {% block js %}{% endblock js %}
+    
+  </body>
+</html>

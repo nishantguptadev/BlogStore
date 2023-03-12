@@ -1,0 +1,40 @@
+{% extends 'blog/main.html' %}
+
+{% block body %}
+
+{% for message in messages %}
+    <div class="container">
+    <div align="left" class="bg-danger text-light alert alert-{{ message.tags }} alert-dismissible fade show my-0 mx-0" role="alert">
+      <strong>{{ message }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    </div>
+    {% endfor %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {% for post in posts reversed %} 
+        <div class="col">
+          <div class="card shadow-sm">
+            <h5 class="card-title text-center bg-dark py-4" style="color: gold;"><b>{{post.title}}</b> </h5>
+            <div align="right"><small class="text-muted"><i > {{post.created_at}} </i></small></div>
+            <div class="card-body">
+              <p class="card-text"> {{post.body|truncatewords:40}} </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-success" href="post/{{post.id}}">View full Post</a> 
+                </div>
+                <h5><i>-{{post.name}}</i></h5>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %} 
+       
+        </div>
+    </div>
+  </div>
+
+{% endblock body %}

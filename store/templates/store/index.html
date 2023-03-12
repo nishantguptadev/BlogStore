@@ -1,0 +1,48 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block body %}
+
+	<div class="row">
+
+		{% for product, range, nSlides in allProds %}
+            <div class="container">
+                <h3 class="my-3 text-center text success bg-light">
+                    {{product.0.category}} Flashsale
+                </h3>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for i in product %}
+                    <div class="col-lg-4 ">
+                        <img src="{{i.imageURL}}" class="thumbnail" alt="not found" />
+                        <div class="box-element product">
+                            <h4 class="card-title" id="namepr{{i.id}}">{{i.name|slice:"0:25"}}</h4>
+							<hr>
+                            <span id="divpr{{i.id}}" class="divpr">
+                                <button id="pr{{i.id}}" class=" cart btn btn-outline-secondary add-btn update-cart">
+                                    AddToCart
+                                </button>
+                            </span>
+                            <a href="/products/{{i.id}}">
+                            <button id="qv{{i.id}}" class="btn btn-outline-success">Details</button></a>
+							<h4 style="display: inline-block; float: right"><strong>Rs.<span id="pricepr{{i.id}}"> {{i.price|floatformat:2}}</span></strong></h4>
+							
+                                    
+                        </div>
+                    </div>
+                    
+                    {% endfor %}
+                </div>
+                
+            </div>
+            
+            {% endfor %}
+		
+	</div>
+
+{% endblock body %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+
+{% endblock js %}

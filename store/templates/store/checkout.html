@@ -1,0 +1,90 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block body %}
+<div class="row">
+	<div class="col-lg-6">
+		<div class="box-element">
+			<a class="btn btn-outline-dark" href="/">&#x2190; Back to Store</a>
+			<hr>
+			<table class="table table-info">
+				<tr>
+					<th>
+						<h5>Items: <strong id="sum"> </strong></h5>
+					</th>
+					<th>
+						<h5>Total: <strong>Rs.</strong> <strong id="totalPrice"> </strong></h5>
+					</th>
+				</tr>
+			</table>
+			<h3>Order Summary</h3>
+			<hr>
+			<table class="table table-striped">
+				<thead class="table-dark">
+					<tr>
+						<th scope="col">Item</th>
+						<th scope="col">Price</th>
+						<th scope="col">Quantity</th>
+						<th scope="col">Total</th>
+					</tr>
+				</thead>
+				<tbody id="items">
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-lg-6">
+		<div class="box-element" id="form-wrapper">
+			<form id="form" method="POSt" action="/checkout/">
+				{% csrf_token %}
+				<input type="hidden" name="itemsJson" id="itemsJson">
+				<input type="hidden" name="amount" id="amount">
+				<div id="user-info">
+					<div class="form-field">
+						<input required class="form-control" type="text" id="name" name="name" placeholder="Name..">
+					</div>
+					<div class="form-field">
+						<input required class="form-control" type="email" id="email" name="email" placeholder="Email..">
+					</div>
+				</div>
+
+				<div id="shipping-info">
+					<hr>
+					<p>Shipping Information:</p>
+					<hr>
+					<div class="form-field">
+						<input class="form-control" type="text" id="address" name="address" placeholder="Address..">
+					</div>
+					<div class="form-field">
+						<input class="form-control" type="text" id="city" name="city" placeholder="City..">
+					</div>
+					<div class="form-field">
+						<input class="form-control" type="text" id="state" name="state" placeholder="State..">
+					</div>
+					<div class="form-field">
+						<input class="form-control" type="text" id="zip_code" name="zip_code" placeholder="Zip code..">
+					</div>
+					<div class="form-field">
+						<input class="form-control" type="text" id="phone" name="phone" placeholder="Phone Number..">
+					</div>
+				</div>
+
+				<hr>
+				<input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+			</form>
+		</div>
+
+	</div>
+	{% endblock body %}
+
+	{% block js %}
+	<script type="text/javascript" src="{% static 'js/checkout.js' %}"></script>
+	<script>
+		{% if thank %}
+		alert('Your order Id is {{id}}. Thanks for ordering with us. Have a nice day!');
+		localStorage.clear(); // clear the local storage
+		document.location = '/'; //redirect to home page
+		{% endif %}
+	</script>
+
+
+	{% endblock js %}

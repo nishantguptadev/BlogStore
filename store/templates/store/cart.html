@@ -1,0 +1,46 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block body %}
+	<div class="row" id="portfolio" class="portfolio">
+		<div class="col-lg-12">
+			<div class="box-element">
+
+				<a  class="btn btn-outline-dark" href="{% url 'index' %}">&#x2190; Continue Shopping</a>
+
+				<br>
+				<br>
+				<table class="table table-info">
+					<tr>
+						<th ><h5>Items: <strong id="sum"> </strong></h5></th>
+		 				<th><h5>Total: <strong id="totalPrice"> </strong></h5></th>
+						
+						<th>
+							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+						</th>
+					</tr>
+				</table>
+
+			</div>
+
+			<br>
+
+			<table class="table table-striped">
+				<thead class="table-dark">
+				  <tr>
+					<th scope="col">Item</th>
+					<th scope="col">Price</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Total</th>
+				  </tr>
+				</thead>
+				<tbody id="items">
+				  
+				</tbody>
+			  </table>
+
+{% endblock body %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'js/checkout.js' %}"></script>
+
+  {% endblock js %}
