@@ -19,11 +19,16 @@
   <div>
     <div class="shadow  my-4">
       <h1 align='center'>{{posts.title}}</h1>
+      <div class="fb-like" data-href="https://nishantgupta.pythonanywhere.com/blog/post/{{posts.id}}" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
+      
       <h6 align='right' class='text-secondary'> {{posts.created_at}} </h6>
     </div>
   </div>
 <P class="px-4 mx-4"> {{posts.body}} </P>
 </div>
+<div class="fb-comments" data-href="https://nishantgupta.pythonanywhere.com/blog/post/{{posts.id}}" 
+data-width="" data-numposts="5"></div>
+
 {% endblock body %}
 
 
